@@ -23,10 +23,15 @@ ENV OCI_HOME=/opt/oracle/instantclient
 ENV OCI_LIB_DIR=/opt/oracle/instantclient
 ENV OCI_INCLUDE_DIR=/opt/oracle/instantclient/sdk/include
 
+ENV DB_USER=system
+ENV DB_PASSWORD=oracle
+ENV DB_HOST=192.168.56.101
+ENV DB_SID=orclcdb
+
 # INSTALL INSTANTCLIENT AND DEPENDENCIES
 RUN ./install-instantclient.sh \
     && pip install -r requirements.txt
 
 EXPOSE 5000
 
-CMD ["python","./api/server.py"]
+CMD ["python","./api/wsgi.py"]
